@@ -19927,35 +19927,34 @@ var ListItem = require('./ListItem.jsx');
 var HTTP = require('../services/httpservice');
 
 var List = React.createClass({
-  displayName: 'List',
+    displayName: 'List',
 
-  getInitialstate: function () {
-    return { ingredients: [] };
-  },
-  componentWillMount: function () {
-    HTTP.get('/ingredients').then(function (data) {
-      console.log("DATA: ", data);
-      this.setState({ ingredients: data });
-    }.bind(this));
-  },
+    getInitialState: function () {
+        return { ingredients: [] };
+    },
+    componentWillMount: function () {
+        HTTP.get('/ingredients').then(function (data) {
+            this.setState({ ingredients: data });
+        }.bind(this));
+    },
+    render: function () {
+        var listItems = this.state.ingredients.map(function (item) {
+            return React.createElement(ListItem, { key: item.id, ingredient: item.text });
+        });
 
-  render: function () {
-    var listItems = this.state.ingredients.map(function (item) {
-      return React.createElement(ListItem, { key: item.id, ingredient: item.text });
-    });
-
-    return React.createElement(
-      'ul',
-      null,
-      listItems
-    );
-  }
+        return React.createElement(
+            'ul',
+            null,
+            listItems
+        );
+    }
 });
 
 module.exports = List;
 
 },{"../services/httpservice":172,"./ListItem.jsx":170,"react":166}],170:[function(require,module,exports){
 var React = require('react');
+
 var ListItem = React.createClass({
     displayName: 'ListItem',
 
@@ -19983,16 +19982,14 @@ ReactDOM.render(React.createElement(List, null), document.getElementById('ingred
 
 },{"./components/List.jsx":169,"react":166,"react-dom":1}],172:[function(require,module,exports){
 var Fetch = require('whatwg-fetch');
-var baseUrl = 'http://localhost:6069';
+var baseUrl = 'http://localhost:6060';
 
 var service = {
-  get: function (url) {
-    console.log("making request");
-    return fetch(baseUrl + url).then(function (response) {
-      console.log("RES: ", response);
-      return response.json();
-    });
-  }
+    get: function (url) {
+        return fetch(baseUrl + url).then(function (response) {
+            return response.json();
+        });
+    }
 };
 
 module.exports = service;
