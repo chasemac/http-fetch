@@ -1,5 +1,5 @@
-To create this, I used:
+To create this, I used: <br />
 
-https://github.com/github/fetch
-https://github.com/devslopes/simple-express-server
+https://github.com/github/fetch <br />
+https://github.com/devslopes/simple-express-server <br />
 https://github.com/chasemac/react-skeleton
